@@ -44,7 +44,7 @@ public class MenuBar extends JMenuBar {
             langName = langProps.getProperty("name");
 
             JMenuItem item = new JMenuItem(langName + " (" + fileName + ")");
-            item.addActionListener(e -> {config.setProp("language", fileName);});
+            item.addActionListener(e -> config.setProp("language", fileName));
 
             menu.add(item);
         }
@@ -63,7 +63,8 @@ public class MenuBar extends JMenuBar {
 
         //Das Item für die automatische Update-Suche erstellen
         JMenuItem autoUpdate = new JMenuItem(config.getLanguageWord("autoUpdate"));
-        autoUpdate.addActionListener(e -> Update.checkForUpdates(true));
+        autoUpdate.addActionListener(e -> new Thread(() -> Update.checkForUpdates(true)
+        ).start());
         menu.add(autoUpdate);
 
         //Das Item für eine manuelle Updatesuche
