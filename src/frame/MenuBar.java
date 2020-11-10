@@ -5,14 +5,9 @@ import main.Main;
 import update.Update;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Properties;
 
 public class MenuBar extends JMenuBar {
@@ -75,11 +70,9 @@ public class MenuBar extends JMenuBar {
         JMenuItem userUpdate = new JMenuItem(config.getLanguageWord("userUpdate"));
         userUpdate.addActionListener(e -> {
             try {
-                Desktop.getDesktop().browse(new URI("http://github.com"));
+                Update.openBrowser("https://sourceforge.net/projects/lcars-item-tool/");
             } catch (IOException ioException) {
                 ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
             }
         });
         menu.add(userUpdate);

@@ -3,15 +3,14 @@ package update;
 import main.Main;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Scanner;
 
 public class Update {
-    public static final String VERSION = "0.1.0";
+    public static final String VERSION = "0.1.1";
 
     public static void checkForUpdates(boolean showInfo) {
         String onlineVersion = getOnlineVersion();
@@ -21,32 +20,27 @@ public class Update {
 
         //check if there is a new version available
         if(!VERSION.equals(onlineVersion)) {
-            String message = Main.config.getLanguageWord("newVersion").toString();
+            String message = Main.config.getLanguageWord("newVersion");
+            JDialog dialog = new JDialog();
 
-            String download = Main.config.getLanguageWord("download");
-            String cancel = Main.config.getLanguageWord("cancel");
-
-            int result = JOptionPane.showOptionDialog(Main.frame,
-                    message,
-                    Main.config.getLanguageWord("updateAvailable"),
-                    JOptionPane.OK_CANCEL_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE,
-                    null,
-                    new String[]{download, cancel},
-                    "default");
-
-            //check if the "Download" button was pressed
-            if(result == 0) {
+            JButton htmlDownloadButton = new JButton("<html><a><img alt=\"Download LCARS Item Tool\" src=\"https://a.fsdn.com/con/app/sf-download-button\" width=276 height=48 srcset=\"https://a.fsdn.com/con/app/sf-download-button?button_size=2x 2x\"></a></html>");
+            htmlDownloadButton.setFocusPainted(false);
+            htmlDownloadButton.addActionListener(e -> {
                 try {
-                    //Den Downloadlink im Browser öffnen //TODO: funktioniert wahrscheinlich nur unter Windows
-                    openBrowser(new URI("https://github.com"));
-
-                    //Das Programm beenden, da es neu installiert wird
-                    System.exit(0);
-                } catch (URISyntaxException | IOException e) {
-                    e.printStackTrace();
+                    Update.openBrowser("https://sourceforge.net/projects/lcars-item-tool/");
+                    dialog.setVisible(false);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
                 }
-            }
+            });
+
+
+            dialog.setSize(325, 150);
+            dialog.setLocationRelativeTo(null);
+            dialog.setTitle(message);
+            dialog.add(new JLabel(message));
+            dialog.add(htmlDownloadButton);
+            dialog.setVisible(true);
         } else {
             if(showInfo) {
                 JOptionPane.showMessageDialog(Main.frame, Main.config.getLanguageWord("noUpdateFound"));
@@ -68,9 +62,9 @@ public class Update {
         }
     }
 
-    private static void openBrowser(URI uri) throws IOException {
+    public static void openBrowser(String uri) throws IOException {
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-            Desktop.getDesktop().browse(uri);
+            Desktop.getDesktop().browse(URI.create(uri));
         }
     }
 
