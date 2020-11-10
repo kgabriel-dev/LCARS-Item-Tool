@@ -69,13 +69,13 @@ public class Editor {
 
         //Je nach Typ die entsprechende Funktion ausführen
         switch(Storage.getType()) {
-            case Button_1Corner -> button1Corner();
-            case Button_2Corners -> button2Corners();
-            case Button_Circle -> buttonCircle();
-            case Button_CutOff -> buttonCutOff();
-            case Button_Rectangle -> buttonRectangle();
-            case Item_Bulge -> itemBulge();
-            case Item_Corner_Right -> itemCornerRight();
+            case Button_1Corner: button1Corner(); break;
+            case Button_2Corners: button2Corners(); break;
+            case Button_Circle: buttonCircle(); break;
+            case Button_CutOff: buttonCutOff(); break;
+            case Button_Rectangle: buttonRectangle(); break;
+            case Item_Bulge: itemBulge(); break;
+            case Item_Corner_Right: itemCornerRight(); break;
         }
 
         StatusPanel.addStatusLine(Main.config.getLanguageWord("statusEdit"));
