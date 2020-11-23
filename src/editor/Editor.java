@@ -6,7 +6,10 @@ import main.Type;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Paths;
 import java.util.HashMap;
 
@@ -14,14 +17,17 @@ import org.apache.batik.transcoder.TranscoderException;
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.PNGTranscoder;
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 import panels.StatusPanel;
 
 import javax.imageio.ImageIO;
-import javax.xml.parsers.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -58,7 +64,7 @@ public class Editor {
                 store = new File(path + name + "_clicked.png");
                 convertSvgToImage(Storage.getClickedColor(), file, store);
 
-            } catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
+            } catch (ParserConfigurationException | SAXException | TransformerException | IOException e) {
                 e.printStackTrace();
             }
         }).start();

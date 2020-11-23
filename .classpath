@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="var" path="USER_HOME/Desktop/Neuer Ordner/batik-all-1.13.jar"/>
+	<classpathentry kind="var" path="USER_HOME/Desktop/Neuer Ordner/xml-apis-ext.jar"/>
+	<classpathentry kind="var" path="USER_HOME/Desktop/Neuer Ordner/xml-apis.jar"/>
+	<classpathentry kind="var" path="USER_HOME/Desktop/Neuer Ordner/xmlgraphics-commons-2.4.jar"/>
+	<classpathentry kind="output" path="out/production/LCARS Item Tool"/>
+</classpath>

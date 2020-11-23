@@ -5,6 +5,7 @@ import main.Main;
 import update.Update;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -21,12 +22,13 @@ public class MenuBar extends JMenuBar {
         //Das SprachItem hinzufügen
         add(createLanguageItem());
         add(createInfoItem());
+        add(createCreditsItem());
     }
 
     private JMenu createLanguageItem() {
         JMenu menu = new JMenu(config.getLanguageWord("language"));
 
-        File langDir = new File("resources/language");
+        File langDir = new File("resources/language/");
         for(File langFile : langDir.listFiles()) {
             String fileName = langFile.getName().replace(".txt", "");
             String langName;
@@ -77,6 +79,38 @@ public class MenuBar extends JMenuBar {
             }
         });
         menu.add(userUpdate);
+
+        //Das Item zum Togglen für die Updatesuche hinzufügen
+        JCheckBoxMenuItem toggleUpdateSearch = new JCheckBoxMenuItem(config.getLanguageWord("toggleUpdateSearch"));
+        boolean currState = Boolean.valueOf(config.getProp("checkUpdates"));
+        toggleUpdateSearch.setState(currState);
+        toggleUpdateSearch.addActionListener(e -> {
+            boolean oldState = Boolean.valueOf(config.getProp("checkUpdates"));
+            boolean newState = !oldState;
+
+            toggleUpdateSearch.setState(newState);
+            config.setProp("checkUpdates", "" + newState);
+        });
+        menu.add(toggleUpdateSearch);
+
+        return menu;
+    }
+
+    private JMenu createCreditsItem() {
+        JMenu menu = new JMenu(config.getLanguageWord("credits"));
+
+        //Das Item zum Öffnen der Credits.txt erzeugen
+        JMenuItem openCredits = new JMenuItem(config.getLanguageWord("showCredits"));
+
+        openCredits.addActionListener(e -> {
+            try {
+                Desktop.getDesktop().open(new File("resources/credits.txt"));
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+        menu.add(openCredits);
 
         return menu;
     }

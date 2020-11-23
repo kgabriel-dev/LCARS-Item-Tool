@@ -56,17 +56,17 @@ public class Frame extends JFrame {
         add(scrollItemList, constraints);
 
         //--> donateButton hinzufügen
-        constraints.gridx = 1;
+    /*  constraints.gridx = 1;
         constraints.gridy = 0;
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
         constraints.weightx = 1;
         constraints.weighty = 0;
-        add(donateButton, constraints);
+        add(donateButton, constraints); */
 
         //--> das InfoPanel hinzufügen
         constraints.gridx = 1;
-        constraints.gridy = 1;
+        constraints.gridy = 0;
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
         constraints.weightx = 1;

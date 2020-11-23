@@ -9,7 +9,7 @@ public class Config {
     private Properties configProps;
 
     public Config() {
-        configFile = new File("src/config/config.txt");
+        configFile = new File("resources/config.txt");
 
         try {
             FileReader reader = new FileReader(configFile);
@@ -49,6 +49,10 @@ public class Config {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getProp(String key) {
+        return configProps.getProperty(key);
     }
 
 }

@@ -11,6 +11,7 @@ public class Main {
     public static Config config;
 
     public static void main(String[] args) {
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
@@ -23,12 +24,15 @@ public class Main {
         frame.setVisible(true);
 
         //Auf Updates in einem neuen Thread prüfen
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Update.checkForUpdates(false);
-            }
-        }).start();
+        if (Boolean.valueOf(config.getProp("checkUpdates"))) {
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Update.checkForUpdates(false);
+                }
+            }).start();
+        }
     }
 
 }

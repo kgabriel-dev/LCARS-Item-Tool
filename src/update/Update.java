@@ -23,7 +23,7 @@ public class Update {
             String message = Main.config.getLanguageWord("newVersion");
             JDialog dialog = new JDialog();
 
-            JButton htmlDownloadButton = new JButton("<html><a href=\"https://sourceforge.net/projects/lcars-item-tool/files/latest/download\"><img alt=\"Download LCARS Item Tool\" src=\"https://a.fsdn.com/con/app/sf-download-button\" width=276 height=48 srcset=\"https://a.fsdn.com/con/app/sf-download-button?button_size=2x 2x\"></a></html>");
+            JButton htmlDownloadButton = new JButton("<html><a><img alt=\"Download LCARS Item Tool\" src=\"https://a.fsdn.com/con/app/sf-download-button\" width=276 height=48 srcset=\"https://a.fsdn.com/con/app/sf-download-button?button_size=2x 2x\"></a></html>");
             htmlDownloadButton.setFocusPainted(false);
             htmlDownloadButton.setBackground(Color.WHITE);
             htmlDownloadButton.addActionListener(e -> {
@@ -36,15 +36,6 @@ public class Update {
             });
 
             JOptionPane.showMessageDialog(Main.frame, htmlDownloadButton, message, JOptionPane.PLAIN_MESSAGE);
-
-//            dialog.setResizable(false);
-//            dialog.setAlwaysOnTop(true);
-//            dialog.getContentPane().setBackground(Color.WHITE);
-//            dialog.setSize(350, 150);
-//            dialog.setLocationRelativeTo(null);
-//            dialog.setTitle(message);
-//            dialog.add(htmlDownloadButton);
-//            dialog.setVisible(true);
 
         } else {
             if(showInfo) {
