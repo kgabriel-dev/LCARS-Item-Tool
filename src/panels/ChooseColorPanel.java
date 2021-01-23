@@ -10,7 +10,7 @@ import java.io.*;
 
 public class ChooseColorPanel extends JPanel {
 
-    private int rows = 4, cols = 8, colors = 32;
+    private int rows = 3, cols = 11, colors = 32;
     private Color[] colorList = new Color[colors];
     private boolean clickedColor;
 
@@ -84,6 +84,27 @@ public class ChooseColorPanel extends JPanel {
             add(button, constraints);
             constraints.gridx++;
         }
+
+        //den Button für die eigene Farbe hinzufügen
+        JButton ownColor = new JButton(Main.config.getLanguageWord("ownColor"));
+        ownColor.setFont(ownColor.getFont().deriveFont(Font.BOLD));
+        ownColor.addActionListener(e -> {
+            Color chosenColor = JColorChooser.showDialog(Main.frame, Main.config.getLanguageWord("chooseColor"), new Color(0x000096));
+
+            colorPanel.setBackground(chosenColor);
+
+            if(!clickedColor) {
+                Storage.setColor(chosenColor);
+
+                Main.frame.setForwardsAction(e1 -> Main.frame.setConfigPanel(new ChooseColorPanel(true)));
+            }
+            else {
+                Storage.setClickedColor(chosenColor);
+
+                Main.frame.setForwardsAction(e1 -> Main.frame.setConfigPanel(new ChooseOrientationPanel()));
+            }
+        });
+        add(ownColor, constraints);
 
         //das Panel hinzufügen, dass die gegenwärtige Farbe anzeigt
         constraints.gridx = 0;
