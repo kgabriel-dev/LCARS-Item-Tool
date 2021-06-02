@@ -51,12 +51,8 @@ public class Editor {
 
                 //File base = new File("/resources/svg/" + type.toString() + ".svg");
                 DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-                StatusPanel.addStatusLine("created new instance");
                 DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-                StatusPanel.addStatusLine("created doc builder");
-                StatusPanel.addStatusLine(base.getAbsolutePath());
                 doc = docBuilder.parse(base.getAbsolutePath());
-                StatusPanel.addStatusLine("parsed file");
 
                 StatusPanel.addStatusLine(Main.config.getLanguageWord("statusLoad"));
 
@@ -413,7 +409,6 @@ public class Editor {
         lRecY.setTextContent("" + pxValueInMm(measurements.get("r1")));
         lRecW.setTextContent("" + pxValueInMm(measurements.get("w2")));
         lRecH.setTextContent("" + pxValueInMm(measurements.get("h1") - measurements.get("r1")));
-        System.out.println(lRecH.getTextContent());
         lRecS.setTextContent(getStyleString());
 
         //Den Pfad in der rechten inneren Ecke

@@ -72,7 +72,6 @@ public class ItemListPanel extends JPanel {
 //                    File iconFile = new File(icon.toString());
 //                    String fileName = iconFile.getName();
 //                    String fileNameWOExtension = removeExtension(fileName);
-//                    System.out.println(icon.toString());
 //                    Type type = Type.valueOf(fileNameWOExtension);
 //
 //                    //den Typ im Storage speichern
