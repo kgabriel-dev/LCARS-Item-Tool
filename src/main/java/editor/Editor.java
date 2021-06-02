@@ -116,7 +116,6 @@ public class Editor {
         try {
             storeAsPNG(svg, output);
 
-            //TODO: THE PATH IS PRINTED WITHOUT '/'s
             String statusExport = Main.config.getLanguageWord("statusExport");
             statusExport = statusExport.replaceAll("%NAME%", output.getName());
             StatusPanel.addStatusLine(statusExport);

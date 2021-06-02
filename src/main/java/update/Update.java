@@ -10,13 +10,10 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class Update {
-    public static final String VERSION = "0.2.0";
+    public static final String VERSION = "0.2.1";
 
     public static void checkForUpdates(boolean showInfo) {
         String onlineVersion = getOnlineVersion();
-
-//        System.out.println("installed: " + VERSION);
-//        System.out.println("online: " + onlineVersion);
 
         //check if there is a new version available
         if(!VERSION.equals(onlineVersion)) {
@@ -54,7 +51,7 @@ public class Update {
 
         } catch (IOException e) {
             e.printStackTrace();
-            return VERSION;
+            return getProgramVersion();
         }
     }
 
